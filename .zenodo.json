@@ -22,7 +22,7 @@
   ],
   "related_identifiers": [
     {
-      "identifier": "https://github.com/consent-substrate-wg/consent-substrate",
+      "identifier": "https://github.com/consent-substrate-wg1/consent-substrate",
       "relation": "isSupplementTo",
       "resource_type": "software"
     }

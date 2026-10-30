@@ -9,7 +9,7 @@ authors:
 version: v1.1.0
 date: "2026-10-29"
 license: Apache-2.0
-repository-code: "https://github.com/consent-substrate-wg/consent-substrate"
+repository-code: "https://github.com/consent-substrate-wg1/consent-substrate"
 abstract: >-
   The most dangerous intrusions into LLM-agent deployments are not the ones
   that look dangerous. This stack replaces look-based detection with two
