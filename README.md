@@ -96,8 +96,6 @@ Disclosure workflows built on this stack are report-only by construction.
 
 ## Citation
 
-See [`CITATION.cff`](CITATION.cff). If the DOI is not yet minted, cite the
-preprint title with the release tag you used.
 
 ## License
 
