@@ -8,6 +8,7 @@ authors:
   - name: Consent Substrate Working Group
 version: v1.1.0
 date: "2026-10-29"
+doi: 10.5281/zenodo.23797526
 license: Apache-2.0
 repository-code: "https://github.com/consent-substrate-wg1/consent-substrate"
 abstract: >-

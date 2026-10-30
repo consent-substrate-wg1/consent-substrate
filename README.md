@@ -1,4 +1,5 @@
 # consent-substrate
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23797526.svg)](https://doi.org/10.5281/zenodo.23797526)
 
 **Signed authorization and witness boundaries for LLM agents.**
 
@@ -65,7 +66,7 @@ call, in-band denial observations the model can see and adapt to), and
 
 **Detected or Proven: Signed Witness Boundaries Against Quiet-Class
 Compromise of LLM Agents** — [`paper/detected-or-proven-preprint.pdf`](paper/detected-or-proven-preprint.pdf)
-(LaTeX source in `paper/`). DOI: *to be minted via Zenodo on the v1.1.0 release*.
+(LaTeX source in `paper/`). DOI: [10.5281/zenodo.23797526](https://doi.org/10.5281/zenodo.23797526).
 
 The paper contains the full threat model (the quiet class, four unavoidable
 contact points, four asymmetries), the design rationale, the 38-case replay
