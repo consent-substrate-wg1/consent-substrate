@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>consent-substrate — detected or proven</title>
+<meta name="description" content="Signed authorization and witness boundaries for LLM agents. An attack against a protected agent is either detected or proven — there is no third option.">
+<style>
+  :root{
+    --bg:#0b1524; --panel:#101d31; --ink:#e8eef7; --dim:#9fb0c6;
+    --accent:#5eead4; --line:#22344f;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  .wrap{max-width:880px; margin:0 auto; padding:64px 24px 96px}
+  header h1{
+    font-size:clamp(28px,5vw,44px); line-height:1.15; margin:0 0 8px;
+    letter-spacing:-.02em; font-weight:800;
+  }
+  .tagline{color:var(--dim); font-size:18px; margin:0 0 14px}
+  .claim{
+    border-left:3px solid var(--accent); padding:14px 18px; margin:26px 0;
+    background:var(--panel); border-radius:0 10px 10px 0;
+    font-size:17px;
+  }
+  .claim b{color:var(--accent)}
+  .grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px; margin:30px 0}
+  .stat{
+    background:var(--panel); border:1px solid var(--line); border-radius:10px;
+    padding:16px 14px; text-align:center;
+  }
+  .stat .n{font-size:26px; font-weight:800; color:var(--accent); font-variant-numeric:tabular-nums}
+  .stat .l{color:var(--dim); font-size:12.5px; text-transform:uppercase; letter-spacing:.08em; margin-top:4px}
+  h2{font-size:20px; margin:40px 0 10px; letter-spacing:-.01em}
+  p{color:var(--dim); margin:8px 0 14px}
+  p strong{color:var(--ink); font-weight:600}
+  code{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    background:var(--panel); border:1px solid var(--line); border-radius:6px;
+    padding:2px 7px; font-size:.9em; color:var(--accent);
+  }
+  .cta{display:flex; gap:14px; flex-wrap:wrap; margin-top:34px}
+  .cta a{
+    display:inline-block; padding:12px 22px; border-radius:10px; text-decoration:none;
+    font-weight:700; font-size:15px;
+  }
+  .cta .primary{background:var(--accent); color:#06231d}
+  .cta .ghost{border:1px solid var(--line); color:var(--ink)}
+  .foot{margin-top:72px; padding-top:20px; border-top:1px solid var(--line);
+        color:var(--dim); font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>consent-substrate</h1>
+    <p class="tagline">Signed authorization and witness boundaries for LLM agents.</p>
+  </header>
+
+  <div class="claim">
+    The most dangerous intrusions don't look dangerous. So we stopped asking
+    "does this action look bad?" — and started asking two questions a
+    signature can answer: <b>was it authorized?</b> and <b>did it touch a
+    witness?</b> An attack against a protected agent is either
+    <b>detected</b> or <b>proven</b>. There is no third option.
+  </div>
+
+  <div class="grid">
+    <div class="stat"><div class="n">38</div><div class="l">case corpus</div></div>
+    <div class="stat"><div class="n">66/66</div><div class="l">boundary scans pass</div></div>
+    <div class="stat"><div class="n">0</div><div class="l">benign false positives</div></div>
+    <div class="stat"><div class="n">21/21</div><div class="l">detection rules live</div></div>
+    <div class="stat"><div class="n">2</div><div class="l">signed mechanisms</div></div>
+  </div>
+
+  <h2>How it works</h2>
+  <p><strong>One Ed25519 trust root, two mechanisms.</strong> A rules-of-engagement
+  gate holds every agent action to a signed, unexpired scope manifest —
+  deny-by-default, fail-closed, with every allow <em>and</em> every refusal
+  written to a hash-chained audit log. A canary substrate seeds tokens, decoy
+  paths, and decoy endpoints that are indistinguishable from real loot; its
+  chain's first link is pegged to the gate's chain head. Together they form
+  one evidence forest.</p>
+
+  <h2>Reproduce the evaluation</h2>
+  <p>The full replay is one command, zero network, zero dependencies:</p>
+  <p><code>python canary_skill.py --selftest</code></p>
+  <p>Because the chain is a pure function of the rule set, a third-party
+  re-run must reproduce the exact chain digest. Divergence is a finding —
+  that's the reproducibility guarantee, not a bug report.</p>
+
+  <h2>The paper</h2>
+  <p><strong>Detected or Proven: Signed Witness Boundaries Against
+  Quiet-Class Compromise of LLM Agents</strong> — threat model, design, 38-case
+  replay methodology, and a third-party reproduction protocol (Appendix A).
+  Preprint ships in the repository; DOI is minted on the first release.</p>
+
+  <div class="cta">
+    <a class="primary" href="../paper/detected-or-proven-preprint.pdf">Read the paper</a>
+    <a class="ghost" href="https://github.com/CONSENT_SUBSTRATE_GH_ORG/consent-substrate">Source on GitHub</a>
+  </div>
+
+  <div class="foot">
+    Apache-2.0 · consent-substrate working group ·
+    sell consent, never capability — every claim here is traceable to a
+    signature, a hash chain, or a disclosure.
+  </div>
+</div>
+</body>
+</html>

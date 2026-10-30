@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+title: "Detected or Proven: Signed Witness Boundaries Against Quiet-Class Compromise of LLM Agents (consent-substrate reference implementation)"
+message: >-
+  If you use this software or its evaluation methodology, please cite it
+  using this metadata.
+type: software
+authors:
+  - name: Consent Substrate Working Group
+version: v1.1.0
+date: "2026-10-29"
+license: Apache-2.0
+repository-code: "https://github.com/consent-substrate-wg/consent-substrate"
+abstract: >-
+  The most dangerous intrusions into LLM-agent deployments are not the ones
+  that look dangerous. This stack replaces look-based detection with two
+  signed mechanisms sharing one Ed25519 trust root: a rules-of-engagement
+  gate (is this action authorized?) and a canary substrate (did this actor
+  touch a witness?), joined into one evidence forest in which an attack is
+  either detected or proven, with no third option.
+keywords:
+  - LLM agent security
+  - prompt injection
+  - authorization
+  - canary tokens
+  - hash chains

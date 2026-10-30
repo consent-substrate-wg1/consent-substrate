@@ -1,0 +1,46 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  selftests:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.9", "3.10", "3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Byte-compile all modules
+        run: |
+          python -m py_compile manifest_tool.py roe_gate.py agent_roe.py \
+                               gate_bootstrap.py patch_agent.py canary_skill.py
+
+      - name: Gate self-test (21 checks)
+        run: python roe_gate.py --self-test
+
+      - name: Canary self-test (38-case corpus)
+        run: python canary_skill.py --selftest
+
+      - name: Manifest roundtrip (keygen -> sign -> verify)
+        run: |
+          TMP=$(mktemp -d)
+          python manifest_tool.py keygen --outdir "$TMP"
+          python manifest_tool.py example --out "$TMP/m.json"
+          python manifest_tool.py sign "$TMP/m.json" \
+                 --key "$TMP/roe_signing.pem" --out "$TMP/signed.json"
+          python manifest_tool.py verify "$TMP/signed.json" \
+                 --pub "$TMP/roe_signing.pub"
+
+      - name: Schema export matches shipped schema
+        run: |
+          python manifest_tool.py export-schema --out /tmp/exported.schema.json
+          diff -q /tmp/exported.schema.json schema/scope_manifest.schema.json

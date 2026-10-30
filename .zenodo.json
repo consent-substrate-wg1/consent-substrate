@@ -1,0 +1,31 @@
+{
+  "title": "consent-substrate: Signed Authorization and Witness Boundaries for LLM Agents",
+  "upload_type": "software",
+  "description": "Reference implementation of the consent-substrate stack: an Ed25519-signed rules-of-engagement gate (deny-by-default, fail-closed, hash-chained audit) and an injection-canary substrate (seeded tokens, decoy paths, decoy endpoints) sharing one trust root, yielding a detected-or-proven guarantee against quiet-class compromise of LLM agents. Companion software for the paper 'Detected or Proven: Signed Witness Boundaries Against Quiet-Class Compromise of LLM Agents'.",
+  "creators": [
+    {
+      "name": "Consent Substrate Working Group"
+    }
+  ],
+  "license": "apache-2.0",
+  "keywords": [
+    "LLM agents",
+    "agent security",
+    "prompt injection",
+    "authorization",
+    "rules of engagement",
+    "canary tokens",
+    "hash chains",
+    "OWASP ASI",
+    "ISO 42001",
+    "auditability"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "https://github.com/consent-substrate-wg/consent-substrate",
+      "relation": "isSupplementTo",
+      "resource_type": "software"
+    }
+  ],
+  "version": "v1.1.0"
+}

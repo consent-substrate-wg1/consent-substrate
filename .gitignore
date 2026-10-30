@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+
+# NEVER commit consent-substrate operational material
+keys/
+*.pem
+*.pub
+signed_manifest*.json
+signed.json
+*_manifest.json
+!schema/*.json
+*.audit.jsonl
+*audit*.jsonl
+canary_audit*
+canary_chain*
+materialized/
+lab_*.json
+roe/
+.roe_kill
+
+# Local lab artifacts
+agent_notes.md
+cleanup_report.md
+baseline.json
+
+# Build
+*.pdf
+!paper/*.pdf
+*.aux
+*.log
+*.out
+*.synctex.gz
