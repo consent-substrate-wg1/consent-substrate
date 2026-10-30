@@ -33,3 +33,6 @@ baseline.json
 *.log
 *.out
 *.synctex.gz
+
+# ship the preprint in docs/ (Pages serves only that folder)
+!docs/*.pdf
