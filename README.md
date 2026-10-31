@@ -96,6 +96,8 @@ Disclosure workflows built on this stack are report-only by construction.
 
 ## Citation
 
+See [`CITATION.cff`](CITATION.cff). The DOI is minted:
+[10.5281/zenodo.23797526](https://doi.org/10.5281/zenodo.23797526).
 
 ## License
 

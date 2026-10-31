@@ -52,10 +52,10 @@ CLI
   python roe_gate.py --verify-log roe_audit.jsonl
 
 Termux setup:
-    pip install cryptography
     pkg install tzdata   # only needed for quiet hours outside UTC
+    (no pip installs: Ed25519 is pure stdlib since v1.1.1)
 
-Tested on Termux/Android, Python 3.10+.
+Tested on Termux/Android, Python 3.9+.
 """
 
 from __future__ import annotations

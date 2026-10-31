@@ -1,3 +1,30 @@
+# v1.1.1 — zero-dependency signing
+
+Ed25519 is now implemented **in-module, pure standard library** (RFC 8032).
+`manifest_tool.py` previously hard-required the third-party `cryptography`
+package at import time — which also failed the gate on bare interpreters.
+The published zero-dependency claim now matches the code: no pip, no
+network, anywhere in the stack.
+
+- `python manifest_tool.py ed25519-vectors` (new, CI-enforced): RFC 8032
+  test vectors, tamper rejection, and PKCS8 interop with keys written by
+  the `cryptography` package.
+- Existing keys (`roe_signing.pem` / `roe_signing.pub`) load unchanged.
+- Signatures are byte-identical to RFC-conformant implementations
+  (differential-tested: 100 random keys × 5 assertions, all green).
+- The 38-case corpus replay is byte-identical to v1.1.0 — the only delta in
+  replay output is the version string. Digest semantics untouched.
+- Docs scrub in the same pass: stale `pip install cryptography` docstring
+  guidance removed from `roe_gate.py` and `agent_roe.py` (neither module
+  imports it — that was the false claim's residue); `roe_gate.py`'s
+  tested-Python note now matches the CI matrix (3.9+); README cites the
+  minted Zenodo DOI. No code paths touched.
+
+The v1.1.0 table below remains the verified numbers; CI re-proves all of it
+on every push, now including the vectors.
+
+---
+
 # v1.1.0 — first public release
 
 **consent-substrate** — signed authorization and witness boundaries for LLM
@@ -68,3 +95,17 @@ protocol**.
 ## License
 
 Apache-2.0.
+
+## Seal — independent reproduction
+
+Sealed on bare-metal lab hardware (Android/Termux, stdlib-only Python, no
+pip): the deterministic 38-case / 66-scan boundary replay produced an
+identical results digest from two independent chain states — a fresh
+unsigned dry chain (52 entries) and the signed production chain (51 prior
+entries; slice seq 51–101; 102/102 signed; verify-log clean):
+`8a9bad9c3eee3c4ca6daf33e766d9a6d429b0b8922811ae3878760a1458c5c3d`.
+Independently reproduced on a second, unrelated device (laptop, --dry):
+identical. Differs from the v1.0.0 exhibit `f9181d99…95656` exactly as the
+corpus growth (36→38 cases, 64→66 scans, materialize class) predicts.
+Ed25519 (RFC 8032, in-module): vectors 14/14, PKCS8 interop with keys
+written by the `cryptography` package. Divergence remains a finding.

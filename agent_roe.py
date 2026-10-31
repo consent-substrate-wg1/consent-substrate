@@ -26,7 +26,6 @@ EXECUTE_PYTHON policy (v1, defense-in-depth, NOT a sandbox):
     decisions: one flight recorder, no gaps.
 
 Install on the phone:
-    pip install cryptography        (if not already)
     python gate_bootstrap.py        (one-time: keys + signed lab manifest)
     python patch_agent.py           (patches tree_search_agent.py; makes .bak)
 """

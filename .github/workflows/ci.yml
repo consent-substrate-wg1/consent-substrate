@@ -30,6 +30,9 @@ jobs:
       - name: Canary self-test (38-case corpus)
         run: python canary_skill.py --selftest
 
+      - name: Ed25519 vectors (RFC 8032 + PEM interop)
+        run: python manifest_tool.py ed25519-vectors
+
       - name: Manifest roundtrip (keygen -> sign -> verify)
         run: |
           TMP=$(mktemp -d)

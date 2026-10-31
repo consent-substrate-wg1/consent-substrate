@@ -57,7 +57,7 @@ KIT DOCTRINE -> COUNTER (what this stack does to each "law")
   "Blind the defender (kill logging)"       -> L9 defense-evasion rule
 
 DESIGN RULES
-  * Zero new dependencies: stdlib + the already-installed cryptography.
+  * Zero new dependencies: pure standard library (Ed25519 in manifest_tool).
   * Digest-only witness hygiene: the chain records sha256 of scanned content,
     never the content itself. The audit log must not become the next loot.
   * Encoding is not flagged per se; decoded INTENT is. A base64 blob that
@@ -108,14 +108,13 @@ import unicodedata
 from datetime import datetime, timezone
 from pathlib import Path
 
-try:
-    from cryptography.hazmat.primitives import serialization
-    from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
-    CRYPTO_OK = True
-except Exception:                                            # pragma: no cover
-    CRYPTO_OK = False
+# Pure-stdlib Ed25519 lives in manifest_tool (RFC 8032, validated by
+# `manifest_tool.py ed25519-vectors`). No third-party dependency anywhere.
+from manifest_tool import Ed25519PrivateKey, load_pem_private_key
 
-VERSION = "1.1.0"
+CRYPTO_OK = True   # always: the signing path has no optional dependency anymore
+
+VERSION = "1.1.1"
 
 # ---- calibration points ------------------------------------------------------
 TH_NOTE, TH_SUSPECT, TH_INJECT = 1, 4, 8   # score bands -> note / suspect / inject
@@ -412,8 +411,8 @@ class Canary:
         self._key = None
         if CRYPTO_OK and self.key_path.exists():
             try:
-                self._key = serialization.load_pem_private_key(
-                    self.key_path.read_bytes(), password=None)
+                self._key = load_pem_private_key(
+                    self.key_path.read_bytes())
             except Exception:
                 self._key = None
         self.registry = self._load_registry()
@@ -833,9 +832,7 @@ def run_selftest() -> int:
         try:
             k = Ed25519PrivateKey.generate()
             (home / "keys" / "roe_signing.pem").write_bytes(
-                k.private_bytes(serialization.Encoding.PEM,
-                                serialization.PrivateFormat.PKCS8,
-                                serialization.NoEncryption()))
+                k.private_bytes_pem())
             generated_key = True
         except Exception:
             pass
